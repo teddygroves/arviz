@@ -100,7 +100,9 @@ jobs:
     displayName: 'Install requirements'
 
   - script: |
-      python -m pip install .
+      sed -i 's/import pyjags/# import pyjags/' arviz/data/io_pyjags.py
+      sed -i 's/self.pyjags = pyjags/self.pyjags = None/' arviz/data/io_pyjags.py
+      python -m pip install --no-deps .
     displayName: 'Install ArviZ package'
 
   - script: |
